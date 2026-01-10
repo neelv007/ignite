@@ -188,3 +188,75 @@
     align-items: center;
   }
 }
+
+
+/* =========================
+   SUB HEADING (ICON + GRADIENT)
+   ========================= */
+.SubHeading {
+  position: relative;
+  display: inline-block;
+
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-transform: uppercase;
+
+  /* Gradient text */
+  background: linear-gradient(
+      285.71deg,
+      #3f88ba -4.32%,
+      #161664 106.53%
+    ),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  padding: 0 40px; /* space for icons */
+}
+
+/* LEFT + RIGHT ICONS */
+.SubHeading::before,
+.SubHeading::after {
+  content: "";
+  position: absolute;
+  top: 0;
+
+  width: 14px;
+  height: 100%;
+
+  background: url(/images/heading-icon.webp) center / contain no-repeat;
+}
+
+.SubHeading::before {
+  left: 0;
+}
+
+.SubHeading::after {
+  right: 0;
+}
+
+/* =========================
+   RESPONSIVE TUNING
+   ========================= */
+@media (max-width: 1024px) {
+  .SubHeading {
+    font-size: 24px;
+    padding: 0 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  .SubHeading {
+    font-size: 16px;
+    padding: 0 24px;
+  }
+
+  .SubHeading::before,
+  .SubHeading::after {
+    height: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
