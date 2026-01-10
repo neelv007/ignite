@@ -142,11 +142,11 @@
 
   /* Restore client mobile background */
   .hero {
-    padding: 20px 0 40px;
+    padding: 20px 0 40px !important;
     background: url(/images/banner-bg-mobile.webp) no-repeat;
     background-size: 100% auto;
     background-position: top center;
-    margin: -27px 0 6px;
+    margin: -10px 0 6px !important;
   }
 
   /* Fix header overlap */
