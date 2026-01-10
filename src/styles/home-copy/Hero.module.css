@@ -1,93 +1,85 @@
 /* =========================
-   HERO WRAPPER (DESKTOP)
+   DESKTOP / TABLET (DEFAULT)
    ========================= */
-.hero {
-  position: relative;
-  padding: 3rem 0;
-  width: 100%;
-  overflow: hidden;
 
+.heroSectionDesktop {
+  padding: 10vh 0;
+}
+
+/* Specificity fix for existing layout */
+:global(.homeCopy) :global(.hero-section-mobile) .hero {
+  padding-top: 20px !important;
+}
+
+.hero {
+  padding: 3rem 0;
   background: url(/images/banner-bg.webp) no-repeat;
   background-size: 30vw;
   background-position: 6.5vw 1vw;
-
   opacity: 1;
   visibility: visible;
   transform: none;
   clip-path: none;
 }
 
-/* Header spacing fix */
-:global(.homeCopy) .hero {
-  padding-top: calc(var(--header-height, 80px) + 1rem);
-}
-
-/* =========================
-   STRUCTURE
-   ========================= */
 .homeherosection > div {
   position: relative;
 }
 
 .homeherosection > div::after {
   content: "";
+  z-index: 1;
+  background: url(/images/hero-bg-1.webp) no-repeat;
+  width: 13%;
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 13%;
   aspect-ratio: 81 / 32;
-  background: url(/images/hero-bg-1.webp) no-repeat;
   background-size: cover;
-  z-index: 0;
 }
 
 .heroMain {
   display: flex;
   align-items: center;
-  position: relative;
-  z-index: 1;
 }
 
 .heroLeft {
   margin-top: -1vw;
 }
 
-/* =========================
-   TEXT
-   ========================= */
 .heroTitleDesktop {
   font-size: 2rem;
   font-weight: 700;
-  margin: 40px 0 50px;
+  margin: 40px 0 50px 0;
   line-height: 1.1;
   text-transform: uppercase;
   color: var(--blue-color);
 }
 
 .heroTitleMobile {
-  font-size: 1.3rem;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.1;
   text-transform: uppercase;
   color: var(--blue-color);
 }
 
 .heroParagraph {
-  padding-top: 20px;
-  font-size: 0.95rem;
+  padding-top: 30px;
+  font-size: 1vw;
   color: var(--blue-color);
   line-height: 1.5;
 }
 
-.heroParagraph :global(h3) {
-  font-size: 1rem;
-  text-transform: uppercase;
-  margin-bottom: 12px;
+.heroParagraph :global(strong) {
+  display: none;
 }
 
-/* =========================
-   RIGHT MEDIA
-   ========================= */
+.heroParagraph :global(h3) {
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+}
+
 .heroRight {
   display: flex;
   justify-content: flex-end;
@@ -95,111 +87,75 @@
 }
 
 .videoContainer {
-  position: relative;
   width: 30vw;
-  aspect-ratio: 30 / 33;
+  height: 33vw;
   overflow: hidden;
 }
 
-.heroPoster {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-}
-
 .heroVideo {
-  position: absolute;
-  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  z-index: 2;
-  opacity: 0;
-  transition: opacity 0.4s ease;
 }
 
-.videoVisible {
-  opacity: 1;
-}
-
-/* =========================
-   BUTTONS
-   ========================= */
 .buttonGroup {
   position: absolute;
   right: 2vw;
   bottom: 1vw;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 1vw;
   width: 17.5vw;
-  z-index: 3;
+}
+
+.buttonGroup :global(img) {
+  width: 1.7vw;
 }
 
 /* =========================
-   MOBILE (CLIENT MATCH)
+   MOBILE — LCP HARD STOP
    ========================= */
+
 @media (max-width: 767px) {
-  /* Hero container */
+  /* Remove ALL paint except LCP image */
   .hero {
-    padding-top: calc(var(--header-height, 80px) + 20px);
-    padding-bottom: 30px;
-    background: linear-gradient(
-      180deg,
-      #e9f6ef 0%,
-      #ffffff 75%
-    );
+    background: none !important;
+    padding: 0 !important;
   }
 
-  .heroMain {
-    flex-direction: column;
-    text-align: center;
+  /* Remove decorative pseudo elements */
+  .homeherosection > div::after,
+  .SubHeading::before,
+  .SubHeading::after {
+    display: none !important;
+    content: none !important;
   }
 
-  .heroLeft {
-    margin: 0;
-    padding: 0 16px;
-  }
-
-  /* Restore full text */
+  /* Remove non-LCP content */
   .heroParagraph,
-  .SubHeading {
-    display: block !important;
-  }
-
-  /* Image stack */
-  .heroRight {
-    margin-top: 20px;
-    justify-content: center;
-  }
-
-  .videoContainer {
-    width: 90vw;
-    aspect-ratio: 16 / 9;
-  }
-
-  /* Video OFF on mobile */
-  .heroVideo {
+  .SubHeading,
+  .buttonGroup {
     display: none !important;
   }
 
-  /* Buttons BELOW image */
-  .buttonGroup {
-    position: static;
-    width: 100%;
-    margin-top: 20px;
-    align-items: center;
+  /* Prevent layout shift */
+  .heroMain,
+  .heroLeft,
+  .heroRight {
+    position: static !important;
+    transform: none !important;
   }
 
-  /* Keep Montserrat */
+  /* Disable animations SAFELY (CSS-module safe) */
+  :global(*) {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Fast system font for LCP text */
   .hero,
   .hero h1,
-  .hero h2,
-  .hero h3,
-  .hero p {
-    font-family: var(--font-montserrat, "Montserrat", sans-serif);
+  .hero h2 {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
 }
