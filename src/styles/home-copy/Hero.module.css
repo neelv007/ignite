@@ -7,7 +7,6 @@
   width: 100%;
   overflow: hidden;
 
-  /* Desktop decorative background (non-LCP) */
   background: url(/images/banner-bg.webp) no-repeat;
   background-size: 30vw;
   background-position: 6.5vw 1vw;
@@ -25,23 +24,9 @@
   position: relative;
 }
 
-.homeherosection > div::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 13%;
-  aspect-ratio: 81 / 32;
-  background: url(/images/hero-bg-1.webp) no-repeat;
-  background-size: cover;
-  z-index: 0;
-}
-
 .heroMain {
   display: flex;
   align-items: center;
-  position: relative;
-  z-index: 1;
 }
 
 .heroLeft {
@@ -61,18 +46,17 @@
 }
 
 .heroTitleMobile {
-  display: none;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.15;
   text-transform: uppercase;
   color: var(--blue-color);
 }
 
 .heroParagraph {
-  padding-top: 30px;
+  padding-top: 20px;
   font-size: 1vw;
   color: var(--blue-color);
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .heroParagraph :global(strong) {
@@ -82,7 +66,7 @@
 .heroParagraph :global(h3) {
   text-transform: uppercase;
   font-size: 1.3rem;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 /* =========================
@@ -94,7 +78,6 @@
   position: relative;
 }
 
-/* KEY: responsive container */
 .videoContainer {
   position: relative;
   width: 30vw;
@@ -102,33 +85,21 @@
   overflow: hidden;
 }
 
-/* LCP IMAGE */
 .heroPoster {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 1;
 }
 
-/* VIDEO */
 .heroVideo {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 2;
-  opacity: 0;
-  transition: opacity 0.4s ease;
 }
-
-.videoLoaded {
-  opacity: 1;
-}
-
-.videoLoaded { opacity: 1; }
 
 /* =========================
    BUTTONS
@@ -141,7 +112,6 @@
   flex-direction: column;
   gap: 1vw;
   width: 17.5vw;
-  z-index: 3;
 }
 
 .buttonGroup :global(img) {
@@ -149,19 +119,17 @@
 }
 
 /* =========================
-   MOBILE (FIXED VERSION)
+   MOBILE — FINAL UI FIX
    ========================= */
 @media (max-width: 767px) {
 
+  /* 🔑 FIX HEADER OVERLAP */
   .hero {
-    background: none;
-    padding: 1.5rem 0;
+    padding: 90px 0 40px !important;
+    background: none !important;
   }
 
-  .homeherosection > div::after {
-    display: none;
-  }
-
+  /* Stack layout */
   .heroMain {
     flex-direction: column;
     text-align: center;
@@ -169,56 +137,56 @@
 
   .heroLeft {
     margin: 0;
-    padding: 0 1rem;
+    padding: 0 16px;
   }
 
-  .heroTitleDesktop {
-    display: none;
-  }
-
+  /* TEXT — MATCH SCREENSHOT 2 */
   .heroTitleMobile {
-    display: block;
-    font-size: 1.3rem;
-    margin-bottom: 12px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.25rem;
+    margin: 16px auto;
   }
 
   .heroParagraph {
-    display: block;
-    font-size: 14px;
+    display: block !important;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.9rem;
     padding-top: 10px;
   }
 
-  .heroParagraph :global(h3) {
-    font-size: 0.9rem;
+  .heroParagraph :global(strong) {
+    display: block;
+    font-weight: 400;
+    opacity: 0.85;
   }
 
-  /* Media */
-  .videoContainer {
-    margin-top: 1rem;
+  /* VIDEO GRID CENTERED */
+  .heroRight {
     width: 100%;
-    aspect-ratio: 4 / 5;
+    justify-content: center;
+    margin-top: 20px;
   }
 
-  /* Video OFF on mobile (performance safe) */
+  .videoContainer {
+    width: 88vw;
+    aspect-ratio: 1 / 1;
+  }
+
   .heroVideo {
-    display: none;
+    display: none !important;
   }
 
-  /* Buttons visible & centered */
+  /* BUTTONS — NORMAL FLOW */
   .buttonGroup {
     position: static;
-    margin-top: 1rem;
     width: 100%;
+    margin-top: 16px;
     align-items: center;
   }
 
-  /* Desktop font consistency */
-  .hero,
-  .hero h1,
-  .hero h2,
-  .hero h3,
-  .hero p {
-    font-family: var(--bs-body-font-family);
+  .buttonGroup a {
+    width: 80%;
+    justify-content: center;
   }
 
   /* Kill animations */
