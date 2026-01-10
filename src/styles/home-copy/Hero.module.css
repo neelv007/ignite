@@ -1,7 +1,10 @@
 /* =========================
    DESKTOP / TABLET (DEFAULT)
    ========================= */
-
+.SubHeading
+{
+display:none;
+}
 .heroSectionDesktop {
   padding: 10vh 0;
 }
