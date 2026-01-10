@@ -25,7 +25,7 @@
 }
 
 /* =====================================
-   LCP IMAGE (POSTER)
+   POSTER IMAGE (LCP)
    ===================================== */
 .heroPoster {
   object-fit: cover;
@@ -51,18 +51,7 @@
 }
 
 /* =====================================
-   TEXT OVERLAY (NOT PART OF LCP)
-   ===================================== */
-.heroOverlay {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  display: flex;
-  align-items: center;
-}
-
-/* =====================================
-   MOBILE BEHAVIOR
+   MOBILE
    ===================================== */
 @media (max-width: 991px) {
   .heroMain {
@@ -79,30 +68,10 @@
   }
 }
 
-/* =====================================
-   HARD STOP: ANIMATIONS ON MOBILE
-   ===================================== */
+/* Kill animations on mobile */
 @media (max-width: 767px) {
-  .hero {
-    animation: none !important;
-    clip-path: none !important;
-  }
-
-   * {
+  * {
     animation: none !important;
     transition: none !important;
-  }
-}
-
-/* =====================================
-   HEADER OFFSET SAFETY
-   ===================================== */
-.homeCopy {
-  padding-top: var(--header-height);
-}
-
-@media (max-width: 767px) {
-  .homeCopy {
-    padding-top: 0 !important;
   }
 }
