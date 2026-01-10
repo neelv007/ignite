@@ -1,75 +1,205 @@
-/* =====================================
-   HERO WRAPPER
-   ===================================== */
+/* =========================
+   HERO WRAPPER (DESKTOP)
+   ========================= */
 .hero {
   position: relative;
+  padding: 3rem 0;
   width: 100%;
+  overflow: hidden;
+
+  background: url(/images/banner-bg.webp) no-repeat;
+  background-size: 30vw;
+  background-position: 6.5vw 1vw;
+
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  clip-path: none;
+}
+
+/* Header spacing fix */
+:global(.homeCopy) .hero {
+  padding-top: calc(var(--header-height, 80px) + 1rem);
+}
+
+/* =========================
+   STRUCTURE
+   ========================= */
+.homeherosection > div {
+  position: relative;
+}
+
+.homeherosection > div::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 13%;
+  aspect-ratio: 81 / 32;
+  background: url(/images/hero-bg-1.webp) no-repeat;
+  background-size: cover;
+  z-index: 0;
+}
+
+.heroMain {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.heroLeft {
+  margin-top: -1vw;
+}
+
+/* =========================
+   TEXT
+   ========================= */
+.heroTitleDesktop {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 40px 0 50px;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: var(--blue-color);
+}
+
+.heroTitleMobile {
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--blue-color);
+}
+
+.heroParagraph {
+  padding-top: 20px;
+  font-size: 0.95rem;
+  color: var(--blue-color);
+  line-height: 1.5;
+}
+
+.heroParagraph :global(h3) {
+  font-size: 1rem;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+/* =========================
+   RIGHT MEDIA
+   ========================= */
+.heroRight {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.videoContainer {
+  position: relative;
+  width: 30vw;
+  aspect-ratio: 30 / 33;
   overflow: hidden;
 }
 
-/* =====================================
-   LCP IMAGE (MUST DOMINATE)
-   ===================================== */
 .heroPoster {
-  width: 100%;
-  height: auto;
-  display: block;
-   position: relative;
-   z-index: 2;
-   aspect-ratio: 600 / 620;
-}
-
-/* =====================================
-   VIDEO (loads after LCP)
-   ===================================== */
-.heroVideo {
   position: absolute;
   inset: 0;
   width: 100%;
-  height: 620px;
+  height: 100%;
   object-fit: cover;
   z-index: 1;
 }
 
-/* =====================================
-   TEXT OVERLAY (NOT PART OF LCP)
-   ===================================== */
-.heroOverlay {
+.heroVideo {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   z-index: 2;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.videoVisible {
+  opacity: 1;
+}
+
+/* =========================
+   BUTTONS
+   ========================= */
+.buttonGroup {
+  position: absolute;
+  right: 2vw;
+  bottom: 1vw;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+  width: 17.5vw;
+  z-index: 3;
 }
 
-/* =====================================
-   MOBILE TUNING
-   ===================================== */
-@media (max-width: 575px) {
-  .heroPoster {
-    height: 520px;
-  }
-}
-
-
-/* Hide video on mobile */
-@media (max-width: 991px) {
-  .heroVideo {
-    display: none;
-  }
-}
-
-/* Hide poster on desktop */
-@media (min-width: 992px) {
-  .heroPoster {
-    display: none;
-  }
-}
-
-
+/* =========================
+   MOBILE (CLIENT MATCH)
+   ========================= */
 @media (max-width: 767px) {
+  /* Hero container */
   .hero {
-    animation: none !important;
-    clip-path: none !important;
+    padding-top: calc(var(--header-height, 80px) + 20px);
+    padding-bottom: 30px;
+    background: linear-gradient(
+      180deg,
+      #e9f6ef 0%,
+      #ffffff 75%
+    );
+  }
+
+  .heroMain {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .heroLeft {
+    margin: 0;
+    padding: 0 16px;
+  }
+
+  /* Restore full text */
+  .heroParagraph,
+  .SubHeading {
+    display: block !important;
+  }
+
+  /* Image stack */
+  .heroRight {
+    margin-top: 20px;
+    justify-content: center;
+  }
+
+  .videoContainer {
+    width: 90vw;
+    aspect-ratio: 16 / 9;
+  }
+
+  /* Video OFF on mobile */
+  .heroVideo {
+    display: none !important;
+  }
+
+  /* Buttons BELOW image */
+  .buttonGroup {
+    position: static;
+    width: 100%;
+    margin-top: 20px;
+    align-items: center;
+  }
+
+  /* Keep Montserrat */
+  .hero,
+  .hero h1,
+  .hero h2,
+  .hero h3,
+  .hero p {
+    font-family: var(--font-montserrat, "Montserrat", sans-serif);
   }
 }
