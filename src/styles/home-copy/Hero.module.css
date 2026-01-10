@@ -146,11 +146,12 @@
     background: url(/images/banner-bg-mobile.webp) no-repeat;
     background-size: 100% auto;
     background-position: top center;
+      margin-top: 0 !important;
   }
 
   /* Fix header overlap */
   :global(.homeCopy) {
-    padding-top: var(--header-height);
+     padding-top: calc(var(--header-height, 72px) + 12px) !important;
   }
 
   /* Stack layout */
@@ -187,3 +188,5 @@
     align-items: center;
   }
 }
+
+
