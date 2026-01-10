@@ -54,7 +54,26 @@
   margin-bottom: 24px;
 }
 
+.SubHeading {
+  position: relative;
+  top: 0; /* default */
 
+  display: inline-block;
+  padding: 0 40px;
+
+  font-size: 28px;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 1.2;
+
+  background: linear-gradient(
+    285.71deg,
+    #3f88ba -4.32%,
+    #161664 106.53%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
 /* =========================
    TEXT (DESKTOP + MOBILE)
@@ -265,6 +284,21 @@
     height: 18px;
     top: 50%;
     transform: translateY(-50%);
+  }
+}
+
+@media (min-width: 992px) {
+  .SubHeading {
+    top: -0.6em; /* ✔ replaces -6vw */
+  }
+}
+
+
+@media (max-width: 991px) {
+  .SubHeading {
+    top: 0;
+    padding: 0 28px;
+    font-size: 20px;
   }
 }
 
