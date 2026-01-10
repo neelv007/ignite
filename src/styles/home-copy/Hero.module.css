@@ -131,7 +131,9 @@
 .videoLoaded {
   opacity: 1;
 }
-
+.videoVisible {
+  opacity: 1;
+}
 /* =========================
    BUTTONS
    ========================= */
