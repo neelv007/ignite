@@ -45,8 +45,16 @@
 }
 
 .heroLeft {
-  margin-top: -1vw;
+  position: relative;
+  margin-top: 0;
 }
+.heroMainHeading {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 24px;
+}
+
+
 
 /* =========================
    TEXT (DESKTOP + MOBILE)
@@ -259,4 +267,5 @@
     transform: translateY(-50%);
   }
 }
+
 
