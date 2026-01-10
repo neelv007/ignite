@@ -1,7 +1,35 @@
-import Image from "next/image"; // Changed to standard next/image for better LCP control
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import styles from "@/styles/home-copy/Hero.module.css";
 
 const Hero = () => {
+  const videoRef = useRef(null);
+  const [videoReady, setVideoReady] = useState(false);
+
+  useEffect(() => {
+    // Delay video loading so LCP image always wins
+    const timer = setTimeout(() => {
+      if (!videoRef.current) return;
+
+      const source = document.createElement("source");
+      source.src =
+        "https://ignitetraininginstitute.b-cdn.net/hero-banner-video2.mp4";
+      source.type = "video/mp4";
+
+      videoRef.current.appendChild(source);
+      videoRef.current.load();
+    }, 4000); // ✅ LCP-safe delay
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleVideoLoaded = () => {
+    setVideoReady(true);
+
+    // 🔑 REQUIRED for Chrome autoplay when source is added dynamically
+    videoRef.current?.play().catch(() => {});
+  };
+
   return (
     <section className={`${styles.hero} ${styles.homeherosection}`}>
       <div className="container">
@@ -42,30 +70,29 @@ const Hero = () => {
           {/* RIGHT CONTENT */}
           <div className={`col-12 col-lg-5 col-xl-5 ${styles.heroRight}`}>
             <div className={styles.videoContainer}>
-              {/* ✅ OPTIMIZED LCP IMAGE */}
-             <Image
-  src="/images/video-cover.webp"
-  alt="Ignite Tutoring Hero"
-  fill
-  priority
-  fetchPriority="high"
-  sizes="(max-width: 991px) 100vw, 520px"
-  className={styles.heroPoster}
-/>
+              {/* ✅ LCP IMAGE (PRIMARY PAINT) */}
+              <Image
+                src="/images/video-cover.webp"
+                alt="Ignite Tutoring Hero"
+                fill
+                priority
+                fetchPriority="high"
+                sizes="(max-width: 991px) 100vw, 520px"
+                className={styles.heroPoster}
+              />
 
-
-              {/* 🎥 VIDEO (DESKTOP ONLY) */}
+              {/* 🎥 VIDEO (DESKTOP ONLY, LOADS AFTER LCP) */}
               <video
-  className={styles.heroVideo}
-  autoPlay
-  muted
-  loop
-  playsInline
-  preload="none" // <--- Critical: Stops video from stealing bandwidth from the image
-  poster="/images/video-cover.webp"
->
-  <source src="https://ignitetraininginstitute.b-cdn.net/hero-banner-video2.mp4" type="video/mp4" />
-</video>
+                ref={videoRef}
+                className={`${styles.heroVideo} ${
+                  videoReady ? styles.videoVisible : ""
+                }`}
+                muted
+                loop
+                playsInline
+                preload="none"
+                onLoadedData={handleVideoLoaded}
+              />
             </div>
 
             <div className={styles.buttonGroup}>
