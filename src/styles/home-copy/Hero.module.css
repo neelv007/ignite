@@ -1,59 +1,65 @@
 /* =========================
-   DESKTOP / TABLET (DEFAULT)
+   HERO WRAPPER
    ========================= */
-.SubHeading
-{
-display:none;
-}
-.heroSectionDesktop {
-  padding: 10vh 0;
-}
-
-/* Specificity fix for existing layout */
-:global(.homeCopy) :global(.hero-section-mobile) .hero {
-  padding-top: 20px !important;
-}
-
 .hero {
+  position: relative;
   padding: 3rem 0;
+  width: 100%;
+  overflow: hidden;
+
+  /* Desktop decorative background (non-LCP) */
   background: url(/images/banner-bg.webp) no-repeat;
   background-size: 30vw;
   background-position: 6.5vw 1vw;
+
   opacity: 1;
   visibility: visible;
   transform: none;
   clip-path: none;
 }
 
+/* Fix for existing layout specificity */
+:global(.homeCopy) :global(.hero-section-mobile) .hero {
+  padding-top: 20px !important;
+}
+
+/* =========================
+   STRUCTURE
+   ========================= */
 .homeherosection > div {
   position: relative;
 }
 
 .homeherosection > div::after {
   content: "";
-  z-index: 1;
-  background: url(/images/hero-bg-1.webp) no-repeat;
-  width: 13%;
   position: absolute;
   bottom: 0;
   left: 0;
+  width: 13%;
   aspect-ratio: 81 / 32;
+  background: url(/images/hero-bg-1.webp) no-repeat;
   background-size: cover;
+  z-index: 0;
 }
 
 .heroMain {
   display: flex;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .heroLeft {
   margin-top: -1vw;
 }
 
+/* =========================
+   TEXT
+   ========================= */
 .heroTitleDesktop {
   font-size: 2rem;
   font-weight: 700;
-  margin: 40px 0 50px 0;
+  margin: 40px 0 50px;
   line-height: 1.1;
   text-transform: uppercase;
   color: var(--blue-color);
@@ -83,23 +89,52 @@ display:none;
   margin-bottom: 30px;
 }
 
+/* =========================
+   RIGHT MEDIA (CRITICAL FIX)
+   ========================= */
 .heroRight {
   display: flex;
   justify-content: flex-end;
   position: relative;
 }
 
+/* This is the KEY FIX */
 .videoContainer {
+  position: relative;
   width: 30vw;
-  height: 33vw;
+  aspect-ratio: 30 / 33; /* replaces height hacks */
   overflow: hidden;
 }
 
-.heroVideo {
+/* LCP IMAGE */
+.heroPoster {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  z-index: 1;
 }
 
+/* VIDEO */
+.heroVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.videoLoaded {
+  opacity: 1;
+}
+
+/* =========================
+   BUTTONS
+   ========================= */
 .buttonGroup {
   position: absolute;
   right: 2vw;
@@ -108,6 +143,7 @@ display:none;
   flex-direction: column;
   gap: 1vw;
   width: 17.5vw;
+  z-index: 3;
 }
 
 .buttonGroup :global(img) {
@@ -117,15 +153,13 @@ display:none;
 /* =========================
    MOBILE — LCP HARD STOP
    ========================= */
-
 @media (max-width: 767px) {
-  /* Remove ALL paint except LCP image */
+  /* Remove ALL non-LCP paint */
   .hero {
     background: none !important;
     padding: 0 !important;
   }
 
-  /* Remove decorative pseudo elements */
   .homeherosection > div::after,
   .SubHeading::before,
   .SubHeading::after {
@@ -133,14 +167,12 @@ display:none;
     content: none !important;
   }
 
-  /* Remove non-LCP content */
   .heroParagraph,
   .SubHeading,
   .buttonGroup {
     display: none !important;
   }
 
-  /* Prevent layout shift */
   .heroMain,
   .heroLeft,
   .heroRight {
@@ -148,17 +180,28 @@ display:none;
     transform: none !important;
   }
 
-  /* Disable animations SAFELY (CSS-module safe) */
-  :global(*) {
-    animation: none !important;
-    transition: none !important;
+  /* Video OFF on mobile */
+  .heroVideo {
+    display: none !important;
   }
 
-  /* Fast system font for LCP text */
+  /* Stable mobile height */
+  .videoContainer {
+    width: 100vw;
+    aspect-ratio: 16 / 9;
+  }
+
+  /* Fast system font */
   .hero,
   .hero h1,
   .hero h2 {
     font-family: system-ui, -apple-system, BlinkMacSystemFont,
       "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  /* Kill animations safely */
+  :global(*) {
+    animation: none !important;
+    transition: none !important;
   }
 }
