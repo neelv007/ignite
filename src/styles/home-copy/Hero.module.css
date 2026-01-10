@@ -11,11 +11,6 @@
   background: url(/images/banner-bg.webp) no-repeat;
   background-size: 30vw;
   background-position: 6.5vw 1vw;
-
-  opacity: 1;
-  visibility: visible;
-  transform: none;
-  clip-path: none;
 }
 
 /* Fix for existing layout specificity */
@@ -66,8 +61,9 @@
 }
 
 .heroTitleMobile {
+  display: none;
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.2;
   text-transform: uppercase;
   color: var(--blue-color);
 }
@@ -76,7 +72,7 @@
   padding-top: 30px;
   font-size: 1vw;
   color: var(--blue-color);
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .heroParagraph :global(strong) {
@@ -86,11 +82,11 @@
 .heroParagraph :global(h3) {
   text-transform: uppercase;
   font-size: 1.3rem;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 /* =========================
-   RIGHT MEDIA (CRITICAL FIX)
+   RIGHT MEDIA
    ========================= */
 .heroRight {
   display: flex;
@@ -98,11 +94,11 @@
   position: relative;
 }
 
-/* This is the KEY FIX */
+/* KEY: responsive container */
 .videoContainer {
   position: relative;
   width: 30vw;
-  aspect-ratio: 30 / 33; /* replaces height hacks */
+  aspect-ratio: 30 / 33;
   overflow: hidden;
 }
 
@@ -131,9 +127,7 @@
 .videoLoaded {
   opacity: 1;
 }
-.videoVisible {
-  opacity: 1;
-}
+
 /* =========================
    BUTTONS
    ========================= */
@@ -153,55 +147,79 @@
 }
 
 /* =========================
-   MOBILE — LCP HARD STOP
+   MOBILE (FIXED VERSION)
    ========================= */
 @media (max-width: 767px) {
-  /* Remove ALL non-LCP paint */
+
   .hero {
-    background: none !important;
-    padding: 0 !important;
+    background: none;
+    padding: 1.5rem 0;
   }
 
-  .homeherosection > div::after,
-  .SubHeading::before,
-  .SubHeading::after {
-    display: none !important;
-    content: none !important;
+  .homeherosection > div::after {
+    display: none;
   }
 
-  .heroParagraph,
-  .SubHeading,
-  .buttonGroup {
-    display: none !important;
+  .heroMain {
+    flex-direction: column;
+    text-align: center;
   }
 
-  .heroMain,
-  .heroLeft,
-  .heroRight {
-    position: static !important;
-    transform: none !important;
+  .heroLeft {
+    margin: 0;
+    padding: 0 1rem;
   }
 
-  /* Video OFF on mobile */
-  .heroVideo {
-    display: none !important;
+  .heroTitleDesktop {
+    display: none;
   }
 
-  /* Stable mobile height */
+  .heroTitleMobile {
+    display: block;
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+  }
+
+  .heroParagraph {
+    display: block;
+    font-size: 14px;
+    padding-top: 10px;
+  }
+
+  .heroParagraph :global(h3) {
+    font-size: 0.9rem;
+  }
+
+  /* Media */
   .videoContainer {
-    width: 100vw;
-    aspect-ratio: 16 / 9;
+    margin-top: 1rem;
+    width: 100%;
+    aspect-ratio: 4 / 5;
   }
 
-  /* Fast system font */
+  /* Video OFF on mobile (performance safe) */
+  .heroVideo {
+    display: none;
+  }
+
+  /* Buttons visible & centered */
+  .buttonGroup {
+    position: static;
+    margin-top: 1rem;
+    width: 100%;
+    align-items: center;
+  }
+
+  /* Desktop font consistency */
   .hero,
   .hero h1,
-  .hero h2 {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont,
-      "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  .hero h2,
+  .hero h3,
+  .hero p {
+    font-family: var(--bs-body-font-family);
   }
 
-  /* Kill animations safely */
+  /* Kill animations */
   :global(*) {
     animation: none !important;
     transition: none !important;
