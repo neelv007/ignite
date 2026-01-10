@@ -43,28 +43,25 @@ const Hero = () => {
         <div className={styles.videoContainer}>
           {/* LCP IMAGE */}
           <Image
-            src="/images/hero-poster.webp"
-            alt="Ignite Training Institute - Best Tutors in UAE"
-            fill
-            priority
-            quality={75}
-            sizes="(max-width: 768px) 100vw, 600px"
-            className={styles.heroPoster}
-          />
+    src="/images/hero-poster.webp"
+    alt="Ignite Training Institute"
+    fill
+    priority
+    sizes="(max-width: 991px) 100vw, 520px"
+    className={styles.heroPoster}
+  />
 
-          {/* VIDEO OVERLAY */}
-          <video
-            ref={videoRef}
-            className={`${styles.heroVideo} ${
-              videoLoaded ? styles.videoLoaded : ""
-            }`}
-            muted
-            loop
-            playsInline
-            preload="none"
-            onLoadedData={handleVideoLoad}
-          />
-        </div>
+  {/* VIDEO */}
+  <video
+    ref={videoRef}
+    className={`${styles.heroVideo} ${videoLoaded ? styles.videoLoaded : ''}`}
+    muted
+    loop
+    playsInline
+    preload="none"
+    onLoadedData={handleVideoLoad}
+  />
+</div>
       </div>
     </section>
   );
