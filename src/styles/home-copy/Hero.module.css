@@ -136,56 +136,96 @@
 }
 
 /* =========================
-   MOBILE — CLIENT MATCH
+   MOBILE — FINAL FIXED LAYOUT
    ========================= */
 @media (max-width: 767px) {
 
-  /* Restore client mobile background */
+  /* Prevent header overlap */
   .hero {
-    padding: 20px 0 40px !important;
-    background: url(/images/banner-bg-mobile.webp) no-repeat;
-    background-size: 100% auto;
-    background-position: top center;
-    margin: -10px 0 6px !important;
+    padding-top: calc(var(--header-height, 72px) + 16px) !important;
+    background: url(/images/banner-bg-mobile.webp) no-repeat right top;
+    background-size: 90%;
   }
 
-  /* Fix header overlap */
-  :global(.homeCopy) {
-     padding-top: calc(var(--header-height, 72px) + 12px) !important;
-  }
-
-  /* Stack layout */
+  /* Stack everything vertically */
   .heroMain {
     flex-direction: column;
   }
 
-  .heroLeft {
-    margin: 0;
+  .heroLeft,
+  .heroRight {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    position: static !important;
+  }
+
+  /* TEXT — restore proper spacing */
+  .heroTitleMobile {
+    margin-bottom: 12px;
+  }
+
+  .heroParagraph {
+    display: block !important;
+    font-size: 14px;
+    line-height: 1.6;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .heroParagraph strong {
+    display: inline;
+  }
+
+  /* IMAGE — FULL WIDTH */
+  .videoContainer {
+    width: 100% !important;
+    aspect-ratio: 16 / 9;
+    margin: 16px 0;
+    position: relative;
+  }
+
+  .heroPoster {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 18px;
+  }
+
+  /* VIDEO OFF ON MOBILE */
+  .heroVideo {
+    display: none !important;
+  }
+
+  /* BUTTONS — STACKED BELOW IMAGE */
+  .buttonGroup {
+    position: static !important;
+    width: 100% !important;
+    margin-top: 12px;
+    gap: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .buttonGroup a {
+    width: 90%;
+    max-width: 320px;
     text-align: center;
   }
 
-  /* Hide desktop heading */
-  .heroTitleDesktop {
-    display: none;
+  /* Remove decorative pseudo junk */
+  .homeherosection > div::after,
+  .SubHeading::before,
+  .SubHeading::after {
+    display: none !important;
+    content: none !important;
   }
 
-  /* Mobile image sizing */
-  .videoContainer {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    margin-top: 20px;
-  }
-
-  /* Disable video on mobile */
-  .heroVideo {
-    display: none;
-  }
-
-  /* Center buttons */
-  .buttonGroup {
-    position: static;
-    margin-top: 20px;
-    align-items: center;
+  /* Kill animations for stability */
+  :global(*) {
+    animation: none !important;
+    transition: none !important;
   }
 }
 
