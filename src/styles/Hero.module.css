@@ -8,29 +8,42 @@
 }
 
 /* =====================================
-   LCP IMAGE (MUST DOMINATE)
+   MEDIA CONTAINER (POSTER + VIDEO)
+   This is the KEY fix
    ===================================== */
-.heroPoster {
+.videoContainer {
+  position: relative;
   width: 100%;
-  height: 620px; /* Match video height to prevent layout shift */
-  object-fit: cover;
-  display: block; 
-  position: absolute; /* Layer it behind the text but above/below video */
-  inset: 0;
-  z-index: 1; /* Poster stays at base */
+  max-width: 520px;
+  aspect-ratio: 4 / 5; /* Desktop ratio */
+  overflow: hidden;
 }
 
 /* =====================================
-   VIDEO (loads after LCP)
+   LCP IMAGE (POSTER)
+   ===================================== */
+.heroPoster {
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* =====================================
+   VIDEO (FADES IN OVER POSTER)
    ===================================== */
 .heroVideo {
   position: absolute;
   inset: 0;
   width: 100%;
-  height: 620px;
+  height: 100%;
   object-fit: cover;
-  z-index: 2; /* Sits above poster */
-  transition: opacity 0.5s ease-in-out;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* Video becomes visible only after load */
+.videoLoaded {
+  opacity: 1;
 }
 
 /* =====================================
@@ -39,28 +52,29 @@
 .heroOverlay {
   position: absolute;
   inset: 0;
-  z-index: 2;
+  z-index: 3;
   display: flex;
   align-items: center;
 }
 
 /* =====================================
-   MOBILE TUNING
+   MOBILE BEHAVIOR
    ===================================== */
-@media (max-width: 575px) {
-  .heroPoster {
-    height: 520px;
-  }
-}
-
-
-/* Hide video on mobile */
 @media (max-width: 991px) {
+  .videoContainer {
+    max-width: none;
+    aspect-ratio: 3 / 4; /* Mobile-friendly */
+  }
+
+  /* Kill video completely on mobile */
   .heroVideo {
     display: none;
   }
 }
 
+/* =====================================
+   HARD STOP: ANIMATIONS ON MOBILE
+   ===================================== */
 @media (max-width: 767px) {
   .hero {
     animation: none !important;
@@ -68,26 +82,15 @@
   }
 }
 
-
-
-/* Handle padding without waiting for JS */
+/* =====================================
+   HEADER OFFSET SAFETY
+   ===================================== */
 .homeCopy {
-    padding-top: var(--header-height);
+  padding-top: var(--header-height);
 }
 
 @media (max-width: 767px) {
-    .homeCopy {
-        padding-top: 0px !important;
-    }
-}
-
-/* Ensure the hero container doesn't cause a layout shift */
-.hero-container {
-    min-height: 520px; /* Mobile height */
-}
-
-@media (min-width: 992px) {
-    .hero-container {
-        min-height: 620px; /* Desktop height */
-    }
+  .homeCopy {
+    padding-top: 0 !important;
+  }
 }
