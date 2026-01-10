@@ -146,7 +146,7 @@
     background: url(/images/banner-bg-mobile.webp) no-repeat;
     background-size: 100% auto;
     background-position: top center;
-      margin-top: 0 !important;
+    margin: -27px 0 6px;
   }
 
   /* Fix header overlap */
