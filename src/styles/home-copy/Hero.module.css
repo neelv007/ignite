@@ -136,97 +136,55 @@
 }
 
 /* =========================
-   MOBILE — FINAL FIXED LAYOUT
+   MOBILE — CLIENT MATCH
    ========================= */
 @media (max-width: 767px) {
 
-  /* Prevent header overlap */
+  /* Restore client mobile background */
   .hero {
-    padding-top: calc(var(--header-height, 72px) + 16px) !important;
-    background: url(/images/banner-bg-mobile.webp) no-repeat right top;
-    background-size: 90%;
+    padding: 20px 0 40px !important;
+    background: url(/images/banner-bg-mobile.webp) no-repeat;
+    background-size: 100% auto;
+    background-position: top center;
+     margin-top: -10px 0 -6px !important;
   }
 
-  /* Stack everything vertically */
+  /* Fix header overlap */
+  :global(.homeCopy) {
+    padding-top: calc(var(--header-height, 72px) + 12px) !important;
+  }
+
+  /* Stack layout */
   .heroMain {
     flex-direction: column;
   }
 
-  .heroLeft,
-  .heroRight {
-    width: 100% !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    position: static !important;
-  }
-
-  /* TEXT — restore proper spacing */
-  .heroTitleMobile {
-    margin-bottom: 12px;
-  }
-
-  .heroParagraph {
-    display: block !important;
-    font-size: 14px;
-    line-height: 1.6;
+  .heroLeft {
+    margin: 0;
     text-align: center;
-    margin-bottom: 16px;
   }
 
-  .heroParagraph strong {
-    display: inline;
+  /* Hide desktop heading */
+  .heroTitleDesktop {
+    display: none;
   }
 
-  /* IMAGE — FULL WIDTH */
+  /* Mobile image sizing */
   .videoContainer {
-    width: 100% !important;
+    width: 100%;
     aspect-ratio: 16 / 9;
-    margin: 16px 0;
-    position: relative;
+    margin-top: 20px;
   }
 
-  .heroPoster {
-    position: relative !important;
-    width: 100% !important;
-    height: auto !important;
-    border-radius: 18px;
-  }
-
-  /* VIDEO OFF ON MOBILE */
+  /* Disable video on mobile */
   .heroVideo {
-    display: none !important;
+    display: none;
   }
 
-  /* BUTTONS — STACKED BELOW IMAGE */
+  /* Center buttons */
   .buttonGroup {
-    position: static !important;
-    width: 100% !important;
-    margin-top: 12px;
-    gap: 12px;
-    display: flex;
-    flex-direction: column;
+    position: static;
+    margin-top: 20px;
     align-items: center;
   }
-
-  .buttonGroup a {
-    width: 90%;
-    max-width: 320px;
-    text-align: center;
-  }
-
-  /* Remove decorative pseudo junk */
-  .homeherosection > div::after,
-  .SubHeading::before,
-  .SubHeading::after {
-    display: none !important;
-    content: none !important;
-  }
-
-  /* Kill animations for stability */
-  :global(*) {
-    animation: none !important;
-    transition: none !important;
-  }
 }
-
-
