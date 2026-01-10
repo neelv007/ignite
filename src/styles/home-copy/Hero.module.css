@@ -1,5 +1,5 @@
 /* =========================
-   HERO WRAPPER
+   HERO WRAPPER (DESKTOP)
    ========================= */
 .hero {
   position: relative;
@@ -7,15 +7,19 @@
   width: 100%;
   overflow: hidden;
 
-  /* Desktop decorative background */
   background: url(/images/banner-bg.webp) no-repeat;
   background-size: 30vw;
   background-position: 6.5vw 1vw;
+
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  clip-path: none;
 }
 
-/* Fix header overlap */
+/* Header spacing fix */
 :global(.homeCopy) .hero {
-  padding-top: 90px;
+  padding-top: calc(var(--header-height, 80px) + 1rem);
 }
 
 /* =========================
@@ -61,25 +65,24 @@
 }
 
 .heroTitleMobile {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 700;
   line-height: 1.2;
   text-transform: uppercase;
   color: var(--blue-color);
-  text-align: center;
 }
 
 .heroParagraph {
   padding-top: 20px;
-  font-size: 1vw;
+  font-size: 0.95rem;
   color: var(--blue-color);
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .heroParagraph :global(h3) {
+  font-size: 1rem;
   text-transform: uppercase;
-  font-size: 1.2rem;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 /* =========================
@@ -98,7 +101,6 @@
   overflow: hidden;
 }
 
-/* LCP IMAGE */
 .heroPoster {
   position: absolute;
   inset: 0;
@@ -108,7 +110,6 @@
   z-index: 1;
 }
 
-/* VIDEO */
 .heroVideo {
   position: absolute;
   inset: 0;
@@ -120,7 +121,7 @@
   transition: opacity 0.4s ease;
 }
 
-.videoLoaded {
+.videoVisible {
   opacity: 1;
 }
 
@@ -133,25 +134,23 @@
   bottom: 1vw;
   display: flex;
   flex-direction: column;
-  gap: 1vw;
+  gap: 12px;
   width: 17.5vw;
   z-index: 3;
 }
 
-.buttonGroup :global(img) {
-  width: 1.7vw;
-}
-
 /* =========================
-   MOBILE (CLIENT DESIGN MATCH)
+   MOBILE (CLIENT MATCH)
    ========================= */
 @media (max-width: 767px) {
+  /* Hero container */
   .hero {
-    padding: 110px 0 40px;
+    padding-top: calc(var(--header-height, 80px) + 20px);
+    padding-bottom: 30px;
     background: linear-gradient(
       180deg,
-      #eaf8f1 0%,
-      #ffffff 70%
+      #e9f6ef 0%,
+      #ffffff 75%
     );
   }
 
@@ -161,26 +160,25 @@
   }
 
   .heroLeft {
-    margin-top: 0;
+    margin: 0;
     padding: 0 16px;
   }
 
-  .heroParagraph {
-    display: block;
-    font-size: 14px;
+  /* Restore full text */
+  .heroParagraph,
+  .SubHeading {
+    display: block !important;
   }
 
-  .heroParagraph :global(strong) {
-    display: block;
-    opacity: 0.7;
+  /* Image stack */
+  .heroRight {
+    margin-top: 20px;
+    justify-content: center;
   }
 
-  /* Mobile media */
   .videoContainer {
-    width: 100%;
-    max-width: 320px;
-    margin: 24px auto 16px;
-    aspect-ratio: 1 / 1.2;
+    width: 90vw;
+    aspect-ratio: 16 / 9;
   }
 
   /* Video OFF on mobile */
@@ -188,21 +186,20 @@
     display: none !important;
   }
 
-  /* Buttons */
+  /* Buttons BELOW image */
   .buttonGroup {
     position: static;
     width: 100%;
-    margin-top: 16px;
+    margin-top: 20px;
     align-items: center;
   }
 
-  .buttonGroup a {
-    width: 90%;
-    justify-content: center;
-  }
-
-  /* Decorative cleanup */
-  .homeherosection > div::after {
-    display: none;
+  /* Keep Montserrat */
+  .hero,
+  .hero h1,
+  .hero h2,
+  .hero h3,
+  .hero p {
+    font-family: var(--font-montserrat, "Montserrat", sans-serif);
   }
 }
