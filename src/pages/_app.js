@@ -4,6 +4,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 
 import "@/styles/critical.css";
+import "@/styles/globals.css"; // ✅ MUST be loaded normally
 
 import SEOHead from "../components/SEOHead";
 import Header from "../components/Header";
@@ -19,20 +20,18 @@ const montserrat = Montserrat({
   weight: ["400", "700"],
   display: "swap",
   variable: "--font-montserrat",
-  preload: true,
 });
 
 export default function MyApp({ Component, pageProps }) {
   const [showButton, setShowButton] = useState(false);
 
-  /* Load NON-CRITICAL assets after first paint */
+  /* Load ONLY truly non-critical CSS later */
   useEffect(() => {
-    requestIdleCallback(() => {
-      import("bootstrap/dist/css/bootstrap.min.css");
-      import("@/styles/globals.css");
+    setTimeout(() => {
       import("@/styles/noncritical.css");
       import("@/styles/DelayedPopup.css");
-    });
+      import("bootstrap/dist/css/bootstrap.min.css");
+    }, 2000);
   }, []);
 
   useEffect(() => {
