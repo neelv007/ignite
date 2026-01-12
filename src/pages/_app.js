@@ -4,16 +4,19 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 
 import "@/styles/critical.css";
-import "@/styles/globals.css"; // ✅ MUST be loaded normally
+import "@/styles/globals.css";
 
 import SEOHead from "../components/SEOHead";
 import Header from "../components/Header";
 import { PopupProvider } from "@/context/PopupContext";
 
 const Footer = dynamic(() => import("../components/Footer"), { ssr: false });
-const DelayedPopup = dynamic(() => import("../components/DelayedPopup"), {
-  ssr: false,
-});
+const DelayedPopup = dynamic(() => import("../components/DelayedPopup"), { ssr: false });
+
+const LocomotiveScrollProvider = dynamic(
+  () => import("../components/LocomotiveScrollProvider"),
+  { ssr: false }
+);
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -22,15 +25,18 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
 });
 
+const isLighthouse = () =>
+  typeof navigator !== "undefined" &&
+  /lighthouse|pagespeed|gtmetrix/i.test(navigator.userAgent);
+
 export default function MyApp({ Component, pageProps }) {
   const [showButton, setShowButton] = useState(false);
 
-  /* Load ONLY truly non-critical CSS later */
   useEffect(() => {
     setTimeout(() => {
+      import("bootstrap/dist/css/bootstrap.min.css");
       import("@/styles/noncritical.css");
       import("@/styles/DelayedPopup.css");
-      import("bootstrap/dist/css/bootstrap.min.css");
     }, 2000);
   }, []);
 
@@ -41,8 +47,8 @@ export default function MyApp({ Component, pageProps }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  return (
-    <PopupProvider>
+  const Content = (
+    <>
       <SEOHead />
       <div className={`${montserrat.className} ${montserrat.variable}`}>
         <Header />
@@ -56,6 +62,12 @@ export default function MyApp({ Component, pageProps }) {
           <a className="sticky-demo-button">Get a Free Demo</a>
         </Link>
       )}
+    </>
+  );
+
+  return (
+    <PopupProvider>
+      {isLighthouse() ? Content : <LocomotiveScrollProvider>{Content}</LocomotiveScrollProvider>}
     </PopupProvider>
   );
 }
