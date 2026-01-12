@@ -4,7 +4,6 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 
 import "@/styles/critical.css";
-import "@/styles/globals.css";
 
 import SEOHead from "../components/SEOHead";
 import Header from "../components/Header";
@@ -32,12 +31,20 @@ const isLighthouse = () =>
 export default function MyApp({ Component, pageProps }) {
   const [showButton, setShowButton] = useState(false);
 
+  /* SAFE idle loader */
   useEffect(() => {
-    setTimeout(() => {
+    const run = () => {
       import("bootstrap/dist/css/bootstrap.min.css");
+      import("@/styles/globals.css");
       import("@/styles/noncritical.css");
       import("@/styles/DelayedPopup.css");
-    }, 2000);
+    };
+
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(run);
+    } else {
+      setTimeout(run, 2000);
+    }
   }, []);
 
   useEffect(() => {
