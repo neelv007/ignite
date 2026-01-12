@@ -7,7 +7,7 @@ import { useEffect, useRef, useState, useContext } from 'react';
 import Head from 'next/head';
 import SidebarForm from '@/components/SidebarForm';
 import { useMemo } from "react";
-import { PopupContext } from '../../pages/_app';
+import { PopupContext } from "@/context/PopupContext";
 import styles from '@/styles/slug/slug.module.css';
 
 
