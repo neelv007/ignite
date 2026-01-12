@@ -72,14 +72,16 @@ const Hero = () => {
             <div className={styles.videoContainer}>
               {/* ✅ LCP IMAGE (PRIMARY PAINT) */}
               <Image
-                src="/images/video-cover.webp"
-                alt="Ignite Tutoring Hero"
-                fill
-                priority
-                fetchPriority="high"
-                sizes="(max-width: 991px) 100vw, 520px"
-                className={styles.heroPoster}
-              />
+  src="/images/video-cover.webp"
+  alt="Ignite Tutoring Hero"
+  width={520}
+  height={520}
+  priority
+  fetchPriority="high"
+  sizes="(max-width: 991px) 100vw, 520px"
+  className={styles.heroPoster}
+/>
+
 
               {/* 🎥 VIDEO (DESKTOP ONLY, LOADS AFTER LCP) */}
               <video
