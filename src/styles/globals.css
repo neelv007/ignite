@@ -1,13 +1,97 @@
-/* ===============================
-   GLOBAL STYLES (NON-CRITICAL)
-   =============================== */
+@import "../../node_modules/locomotive-scroll/dist/locomotive-scroll.css";
 
-/* Typography helpers */
+/* --- 1. VARIABLES & RESET --- */
+:root {
+  --blue-color: #161664;
+  --skyblue-color: #0091d0;
+  --green-color: #003e37;
+  --lightgreen-color: #00a491;
+  --border-color: #a3caf5;
+  --green-text: #a6eac7;
+  --blue-text: #262e46;
+  --grey-text: #233467;
+  --white-color: #f8fbff;
+  --white-bg: #ffffff;
+  --black-color: #000000;
+  --font-monstserrat: "Montserrat", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-monstserrat) !important;
+  background-color: var(--white-bg);
+  color: var(--blue-text);
+  overflow-x: hidden;
+}
+
+body a {
+  text-decoration: none;
+}
+
+/* --- 2. PERFORMANCE & LCP FIXES --- */
+
+/* Pre-calculates header space to prevent layout shift */
+.homeCopy {
+  padding-top: var(--header-height, 80px);
+}
+
+/* CRITICAL: Ensure Hero is visible immediately on mobile for 2.2s LCP */
+@media (max-width: 767px) {
+  .homeCopy {
+    padding-top: 0px !important;
+  }
+  
+  .hero-container {
+    min-height: 520px; 
+  }
+
+  /* Force hero content to show even if JS/Locomotive hasn't loaded */
+  .hero-container .fade-in-section {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+/* --- 3. LAYOUT CONTAINERS --- */
+.container {
+  max-width: 85vw !important;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+}
+
+@media (max-width: 1124px) { .container { max-width: 90vw !important; } }
+@media (max-width: 991px) { .container { max-width: 95vw !important; } }
+@media (max-width: 767px) { .container { max-width: 100% !important; } }
+
+/* Section Spacing */
+section:not(section section) {
+  padding: 70px 0 !important;
+}
+
+@media (max-width: 767px) {
+  section:not(section section) {
+    padding: 50px 0 !important;
+  }
+}
+
+.padding-0 { padding: 0 !important; }
+.mobile-hide { display: none; }
+
+/* --- 4. TYPOGRAPHY --- */
 .SubHeading {
   font-size: 28px;
   font-weight: 600;
+  line-height: 1.2;
   text-transform: uppercase;
-  background: linear-gradient(285deg, #3f88ba, #161664);
+  background: linear-gradient(285.71deg, #3f88ba -4.32%, #161664 106.53%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   position: relative;
@@ -15,37 +99,107 @@
   display: inline-block;
 }
 
-.SubHeading::before,
-.SubHeading::after {
+.SubHeading:before, .SubHeading:after {
   content: "";
   width: 14px;
   height: 100%;
   position: absolute;
   top: 0;
-  background: url(/images/heading-icon.webp) center / contain no-repeat;
+  background: url(/images/heading-icon.webp) center no-repeat;
+  background-size: contain;
 }
 
-.SubHeading::before { left: 0; }
-.SubHeading::after { right: 0; }
+.SubHeading:before { left: 0; }
+.SubHeading:after { right: 0; }
 
-@media (max-width: 575px) {
-  .SubHeading {
-    font-size: 15px;
-    padding: 0 24px;
-  }
+@media (max-width: 1024px) { .SubHeading { font-size: 24px; } }
+@media (max-width: 575px) { 
+  .SubHeading { font-size: 15px; padding: 0 24px; } 
+  .SubHeading:before, .SubHeading:after { height: 24px; top: 50%; transform: translateY(-50%); }
 }
 
-/* Sections spacing */
-section {
-  padding: 70px 0;
+.testTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--blue-color);
+  margin: 40px auto;
+  line-height: 1.2;
+  text-transform: uppercase;
 }
 
-@media (max-width: 767px) {
-  section {
-    padding: 50px 0;
-  }
+@media (max-width: 991px) { .testTitle { font-size: 1.5rem; margin: 20px auto; max-width: 600px; } }
+@media (max-width: 575px) { .testTitle { font-size: 20.4px !important; line-height: 23px; } }
+
+.highlight {
+  background: linear-gradient(to left, var(--green-color), var(--lightgreen-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* Utility */
-.mobile-hide { display: none; }
-.padding-0 { padding: 0 !important; }
+/* --- 5. INTERACTIVE ELEMENTS --- */
+.buttonBlue, .buttonSkyBlue {
+  position: relative;
+  overflow: hidden;
+  padding: 10px 15px;
+  border-radius: 40px;
+  text-transform: uppercase;
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  z-index: 1;
+}
+
+.buttonBlue { color: var(--white-color); background: var(--blue-color); }
+.buttonSkyBlue { color: var(--blue-color); background: var(--border-color); }
+
+.buttonBlue:hover, .buttonSkyBlue:hover { scale: 1.05; }
+
+.sticky-demo-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  padding: 12px 20px;
+  background: #161d58;
+  color: white;
+  border-radius: 50px;
+  font-weight: 700;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* --- 6. ANIMATIONS --- */
+.fade-in-section {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.is-inview.fade-in-section {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.is-clipped {
+  clip-path: inset(0 100% 0 0);
+  animation: revealImageClip 0.5s 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes revealImageClip {
+  to { clip-path: inset(0 0% 0 0); }
+}
+
+/* Bot/Performance Mode */
+body.is-bot-detected * {
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
