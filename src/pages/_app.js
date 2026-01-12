@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
-import '@/styles/critical.css'; // 🔥 FIRST – LCP safe
+import { PopupProvider } from '@/context/PopupContext';
+
+import '@/styles/critical.css';
 
 import SEOHead from '../components/SEOHead';
 import Header from '../components/Header';
@@ -22,7 +24,6 @@ const montserrat = Montserrat({
 export default function MyApp({ Component, pageProps }) {
   const [showButton, setShowButton] = useState(false);
 
-  /* Load NON-CRITICAL CSS & JS AFTER first paint */
   useEffect(() => {
     requestIdleCallback(() => {
       import('bootstrap/dist/css/bootstrap.min.css');
@@ -32,7 +33,6 @@ export default function MyApp({ Component, pageProps }) {
     });
   }, []);
 
-  /* Sticky button logic */
   useEffect(() => {
     const onScroll = () => setShowButton(window.scrollY > 100);
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -41,20 +41,22 @@ export default function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
-    <>
-      <SEOHead />
-      <div className={`${montserrat.className} ${montserrat.variable}`}>
-        <Header />
-        <Component {...pageProps} />
-        <Footer />
-        <DelayedPopup />
-      </div>
+    <PopupProvider>
+      <>
+        <SEOHead />
+        <div className={`${montserrat.className} ${montserrat.variable}`}>
+          <Header />
+          <Component {...pageProps} />
+          <Footer />
+          <DelayedPopup />
+        </div>
 
-      {showButton && (
-        <Link href="/join-free-demo-class" legacyBehavior>
-          <a className="sticky-demo-button">Get a Free Demo</a>
-        </Link>
-      )}
-    </>
+        {showButton && (
+          <Link href="/join-free-demo-class" legacyBehavior>
+            <a className="sticky-demo-button">Get a Free Demo</a>
+          </Link>
+        )}
+      </>
+    </PopupProvider>
   );
 }
