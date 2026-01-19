@@ -69,60 +69,55 @@ const Hero = () => {
         </div>
 
         {/* 🔥 MOBILE IMAGE COLLAGE — After text on mobile */}
-        <div className={`col-12 d-lg-none ${styles.heroRight} ${styles.mobileImageSection}`}>
+        <div className={`col-12 d-lg-none ${styles.mobileImageSection}`}>
           <div className={styles.mobileImageCollage}>
             <div className={styles.mobileLeftImages}>
               <div className={styles.mobileCircleImage}>
                 <Image
-                  src="/images/hero-mobile-1.webp"
+                  src="/images/test-section1.webp"
                   alt="Student with laptop"
-                  width={180}
-                  height={180}
+                  width={140}
+                  height={140}
                   priority
                   fetchPriority="high"
-                  className={styles.circleImg}
                 />
               </div>
               <div className={styles.mobileOvalImage}>
                 <Image
-                  src="/images/hero-mobile-2.webp"
+                  src="/images/test-section2.webp"
                   alt="Tutoring session"
-                  width={200}
-                  height={280}
+                  width={140}
+                  height={200}
                   priority
-                  className={styles.ovalImg}
                 />
               </div>
             </div>
             <div className={styles.mobileRightImages}>
               <div className={styles.mobileRoundedImage}>
                 <Image
-                  src="/images/hero-mobile-3.webp"
+                  src="/images/trainer1.webp"
                   alt="Teacher and student"
-                  width={200}
-                  height={100}
+                  width={180}
+                  height={80}
                   priority
-                  className={styles.roundedImg}
                 />
               </div>
               <div className={styles.mobileRoundedImage}>
                 <Image
-                  src="/images/hero-mobile-4.webp"
+                  src="/images/trainer2.webp"
                   alt="Student learning"
-                  width={200}
-                  height={100}
+                  width={180}
+                  height={80}
                   priority
-                  className={styles.roundedImg}
                 />
               </div>
               <div className={styles.mobileRoundedImage}>
                 <Image
-                  src="/images/hero-mobile-5.webp"
+                  src="/images/test-section3.webp"
                   alt="Study group"
-                  width={200}
-                  height={100}
+                  width={180}
+                  height={80}
                   priority
-                  className={styles.roundedImg}
                 />
               </div>
             </div>
