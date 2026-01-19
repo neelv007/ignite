@@ -52,6 +52,70 @@ body {
     }
 }
 
+/* =========================
+   CRITICAL BOOTSTRAP GRID
+   ========================= */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.col-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+@media (min-width: 992px) {
+    .col-lg-5 {
+        flex: 0 0 41.666667%;
+        max-width: 41.666667%;
+    }
+    .col-lg-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .col-lg-7 {
+        flex: 0 0 58.333333%;
+        max-width: 58.333333%;
+    }
+    .d-lg-block {
+        display: block !important;
+    }
+    .d-lg-none {
+        display: none !important;
+    }
+    .d-lg-flex {
+        display: flex !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-xl-5 {
+        flex: 0 0 41.666667%;
+        max-width: 41.666667%;
+    }
+    .col-xl-7 {
+        flex: 0 0 58.333333%;
+        max-width: 58.333333%;
+    }
+}
+
+.pe-lg-5 {
+    padding-right: 3rem !important;
+}
+
+.pt-3 {
+    padding-top: 1rem !important;
+}
+
+.pb-3 {
+    padding-bottom: 1rem !important;
+}
+
 /* Basic Grid - d-flex, col classes */
 .d-flex {
     display: flex;
@@ -82,16 +146,6 @@ body {
     width: auto;
 }
 
-/* .col-4 {
-    flex: 0 0 33.333333%;
-    max-width: 33.333333%;
-}
-
-.col-8 {
-    flex: 0 0 66.666667%;
-    max-width: 66.666667%;
-} */
-
 /* Header visibility classes */
 .d-none {
     display: none !important;
@@ -101,14 +155,8 @@ body {
     display: block !important;
 }
 
-@media (min-width: 992px) {
-    .d-lg-flex {
-        display: flex !important;
-    }
-
-    .d-lg-none {
-        display: none !important;
-    }
+.d-block {
+    display: block !important;
 }
 
 /* Position utilities */
