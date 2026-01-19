@@ -6,11 +6,12 @@ import dynamic from 'next/dynamic';
 
 import "@/styles/critical.css";
 import "@/styles/globals.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import SEOHead from '../components/SEOHead';
 import Header from "../components/Header";
 
-// Lazy load non-critical components with higher delay
+// Lazy load non-critical components
 const Footer = dynamic(() => import("../components/Footer"), { 
   ssr: false,
   loading: () => null 
@@ -49,8 +50,6 @@ const isMobileDevice = () => {
 };
 
 const loadStyles = () => {
-    // Load Bootstrap CSS after LCP
-    import("bootstrap/dist/css/bootstrap.min.css");
     import("@/styles/DelayedPopup.css");
 };
 
