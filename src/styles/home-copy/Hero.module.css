@@ -334,9 +334,6 @@
     display: block;
     margin-top: 30px;
     width: 100%;
-    /* Reserve space for LCP image to prevent layout shift */
-    min-height: 400px;
-    contain: layout style;
   }
 
   .mobileHeroWrapper {
@@ -344,8 +341,8 @@
     width: 100%;
     max-width: 360px;
     margin: 0 auto;
-    /* Aspect ratio for LCP stability */
-    aspect-ratio: 360 / 400;
+    /* Use actual image aspect ratio: 600/620 = 0.968 */
+    aspect-ratio: 600 / 620;
   }
 
   .mobileImageContainer {
@@ -357,8 +354,6 @@
     width: 100%;
     height: auto;
     object-fit: contain;
-    /* Ensure image renders immediately */
-    content-visibility: auto;
   }
 
   .mobileButtonGroup {
