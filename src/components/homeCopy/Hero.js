@@ -79,7 +79,11 @@ const Hero = () => {
                 height={400}
                 priority
                 fetchPriority="high"
+                loading="eager"
+                sizes="(max-width: 991px) 100vw, 360px"
                 className={styles.mobileHeroImage}
+                placeholder="blur"
+                blurDataURL="data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAADQAQCdASoQABAAAgA0JYgCdAEO/hOMAAD++P3N5t5Jl4qKxXVfwvQlx0z/0EKV9Z5Xf/ljuV8Z//8s0ADc//+XAAAA"
               />
             </div>
             <div className={styles.mobileButtonGroup}>
@@ -90,6 +94,7 @@ const Hero = () => {
                   width={30}
                   height={30}
                   alt="Right arrow"
+                  loading="lazy"
                 />
               </a>
 
@@ -100,6 +105,7 @@ const Hero = () => {
                   width={30}
                   height={30}
                   alt="Right arrow"
+                  loading="lazy"
                 />
               </a>
             </div>
