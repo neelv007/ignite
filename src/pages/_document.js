@@ -4,12 +4,13 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        {/* 🔥 PRELOAD LCP IMAGE - Use exact Next.js optimized URL for mobile */}
+        {/* 🔥 PRELOAD LCP IMAGE - Critical for mobile LCP < 2.2s
+            Using 390w which matches mobile viewport (390px iPhone) */}
         <link
           rel="preload"
           as="image"
-          href="/_next/image?url=%2Fimages%2Fvideo-cover.webp&w=640&q=75"
-          type="image/webp"
+          imageSrcSet="/_next/image?url=%2Fimages%2Fvideo-cover.webp&w=390&q=75 390w, /_next/image?url=%2Fimages%2Fvideo-cover.webp&w=640&q=75 640w, /_next/image?url=%2Fimages%2Fvideo-cover.webp&w=750&q=75 750w"
+          imageSizes="(max-width: 991px) 100vw, 360px"
           fetchpriority="high"
         />
         
