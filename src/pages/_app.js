@@ -104,10 +104,11 @@ export default function MyApp({ Component, pageProps }) {
 
     useEffect(() => {
         if (!stylesLoaded) {
+            // Delay loading non-critical CSS until after LCP (2.5s)
             const timer = setTimeout(() => {
                 loadStyles();
                 setStylesLoaded(true);
-            }, 100);
+            }, 2500);
 
             return () => clearTimeout(timer);
         }
