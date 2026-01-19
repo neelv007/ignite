@@ -75,15 +75,13 @@ const Hero = () => {
               <Image
                 src="/images/video-cover.webp"
                 alt="Ignite Tutoring Hero"
-                width={360}
-                height={400}
+                width={600}
+                height={620}
                 priority
                 fetchPriority="high"
                 loading="eager"
-                sizes="(max-width: 991px) 100vw, 360px"
+                sizes="(max-width: 640px) 100vw, (max-width: 991px) 80vw, 360px"
                 className={styles.mobileHeroImage}
-                placeholder="blur"
-                blurDataURL="data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAADQAQCdASoQABAAAgA0JYgCdAEO/hOMAAD++P3N5t5Jl4qKxXVfwvQlx0z/0EKV9Z5Xf/ljuV8Z//8s0ADc//+XAAAA"
               />
             </div>
             <div className={styles.mobileButtonGroup}>
