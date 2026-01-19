@@ -4,9 +4,9 @@ import { useState, createContext, useEffect } from "react";
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
+// Critical CSS only - loads immediately
 import "@/styles/critical.css";
 import "@/styles/globals.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 import SEOHead from '../components/SEOHead';
 import Header from "../components/Header";
@@ -49,7 +49,9 @@ const isMobileDevice = () => {
     );
 };
 
-const loadStyles = () => {
+const loadNonCriticalStyles = () => {
+    // Load Bootstrap after LCP
+    import("bootstrap/dist/css/bootstrap.min.css");
     import("@/styles/DelayedPopup.css");
 };
 
