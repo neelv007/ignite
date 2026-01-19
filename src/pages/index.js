@@ -4,16 +4,16 @@ import SEO from "@/components/SEO";
 import SEOHead from "@/components/SEOHead";
 import Hero from "@/components/homeCopy/Hero";
 
-// Dynamic imports
-const Course = dynamic(() => import("@/components/homeCopy/Course"), { loading: () => null });
-const MarqueeBanner = dynamic(() => import("@/components/homeCopy/MarqueeBanner"), { loading: () => null });
-const About = dynamic(() => import("@/components/homeCopy/About"), { loading: () => null });
-const Test = dynamic(() => import("@/components/homeCopy/Test"), { loading: () => null });
-const Subjects = dynamic(() => import("@/components/homeCopy/Subjects"), { loading: () => null });
-const Usps = dynamic(() => import("@/components/homeCopy/Usps"), { loading: () => null });
-const Trainers = dynamic(() => import("@/components/homeCopy/Trainers"), { loading: () => null });
-const Testimonial = dynamic(() => import("@/components/homeCopy/Testimonial"), { loading: () => null });
-const Blog = dynamic(() => import("@/components/homeCopy/Blog"), { loading: () => null });
+// Dynamic imports - SSR disabled to reduce initial bundle
+const Course = dynamic(() => import("@/components/homeCopy/Course"), { ssr: false, loading: () => null });
+const MarqueeBanner = dynamic(() => import("@/components/homeCopy/MarqueeBanner"), { ssr: false, loading: () => null });
+const About = dynamic(() => import("@/components/homeCopy/About"), { ssr: false, loading: () => null });
+const Test = dynamic(() => import("@/components/homeCopy/Test"), { ssr: false, loading: () => null });
+const Subjects = dynamic(() => import("@/components/homeCopy/Subjects"), { ssr: false, loading: () => null });
+const Usps = dynamic(() => import("@/components/homeCopy/Usps"), { ssr: false, loading: () => null });
+const Trainers = dynamic(() => import("@/components/homeCopy/Trainers"), { ssr: false, loading: () => null });
+const Testimonial = dynamic(() => import("@/components/homeCopy/Testimonial"), { ssr: false, loading: () => null });
+const Blog = dynamic(() => import("@/components/homeCopy/Blog"), { ssr: false, loading: () => null });
 
 const HomeCopy = ({ headerHeight }) => {
     const [isMobile, setIsMobile] = useState(false);
