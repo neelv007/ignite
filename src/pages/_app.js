@@ -105,13 +105,17 @@ export default function MyApp({ Component, pageProps }) {
 
     useEffect(() => {
         if (!stylesLoaded) {
-            // Load popup styles after initial render
-            const timer = setTimeout(() => {
-                loadStyles();
+            // Use requestIdleCallback or setTimeout to load after LCP
+            const loadAfterLCP = () => {
+                loadNonCriticalStyles();
                 setStylesLoaded(true);
-            }, 100);
+            };
 
-            return () => clearTimeout(timer);
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(loadAfterLCP, { timeout: 2000 });
+            } else {
+                setTimeout(loadAfterLCP, 1500);
+            }
         }
     }, [stylesLoaded]);
 
