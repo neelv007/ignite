@@ -355,11 +355,11 @@
 
   .mobileButtonGroup {
     position: absolute;
-    bottom: 20px;
-    right: 15px;
+    bottom: 8px;
+    right: 12px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     z-index: 3;
   }
 
@@ -368,8 +368,8 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    font-size: 13px;
-    padding: 10px 16px;
-    min-width: 160px;
+    font-size: 12px;
+    padding: 10px 14px;
+    min-width: 155px;
   }
 }
