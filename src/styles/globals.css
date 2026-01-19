@@ -40,14 +40,17 @@ body a {
   padding-top: var(--header-height, 80px);
 }
 
-/* CRITICAL: Ensure Hero is visible immediately on mobile for 2.2s LCP */
-@media (max-width: 767px) {
+/* CRITICAL: Ensure Hero is visible immediately on mobile for < 2.2s LCP */
+@media (max-width: 991px) {
   .homeCopy {
     padding-top: 0px !important;
   }
   
   .hero-container {
-    min-height: 520px; 
+    min-height: 520px;
+    /* Ensure immediate rendering */
+    content-visibility: auto;
+    contain-intrinsic-size: auto 520px;
   }
 
   /* Force hero content to show even if JS/Locomotive hasn't loaded */
@@ -56,6 +59,12 @@ body a {
     visibility: visible !important;
     transform: none !important;
     animation: none !important;
+  }
+  
+  /* Ensure LCP image loads fast */
+  .hero-container img[priority],
+  .hero-container img[fetchpriority="high"] {
+    content-visibility: auto;
   }
 }
 
