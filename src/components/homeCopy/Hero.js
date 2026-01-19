@@ -68,81 +68,41 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* 🔥 MOBILE IMAGE COLLAGE — After text on mobile */}
+        {/* 🔥 MOBILE IMAGE + BUTTONS — After text on mobile */}
         <div className={`col-12 d-lg-none ${styles.mobileImageSection}`}>
-          <div className={styles.mobileImageCollage}>
-            <div className={styles.mobileLeftImages}>
-              <div className={styles.mobileCircleImage}>
-                <Image
-                  src="/images/test-section1.webp"
-                  alt="Student with laptop"
-                  width={140}
-                  height={140}
-                  priority
-                  fetchPriority="high"
-                />
-              </div>
-              <div className={styles.mobileOvalImage}>
-                <Image
-                  src="/images/test-section2.webp"
-                  alt="Tutoring session"
-                  width={140}
-                  height={200}
-                  priority
-                />
-              </div>
-            </div>
-            <div className={styles.mobileRightImages}>
-              <div className={styles.mobileRoundedImage}>
-                <Image
-                  src="/images/trainer1.webp"
-                  alt="Teacher and student"
-                  width={180}
-                  height={80}
-                  priority
-                />
-              </div>
-              <div className={styles.mobileRoundedImage}>
-                <Image
-                  src="/images/trainer2.webp"
-                  alt="Student learning"
-                  width={180}
-                  height={80}
-                  priority
-                />
-              </div>
-              <div className={styles.mobileRoundedImage}>
-                <Image
-                  src="/images/test-section3.webp"
-                  alt="Study group"
-                  width={180}
-                  height={80}
-                  priority
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.mobileButtonGroup}>
-            <a href="/join-free-demo-class/" className="buttonBlue">
-              Get A Free Demo{" "}
+          <div className={styles.mobileHeroWrapper}>
+            <div className={styles.mobileImageContainer}>
               <Image
-                src="/images/right-arrow-skyblue.webp"
-                width={30}
-                height={30}
-                alt="Right arrow"
+                src="/images/video-cover.webp"
+                alt="Ignite Tutoring Hero"
+                width={360}
+                height={400}
+                priority
+                fetchPriority="high"
+                className={styles.mobileHeroImage}
               />
-            </a>
+            </div>
+            <div className={styles.mobileButtonGroup}>
+              <a href="/join-free-demo-class/" className="buttonBlue">
+                Get A Free Demo{" "}
+                <Image
+                  src="/images/right-arrow-skyblue.webp"
+                  width={30}
+                  height={30}
+                  alt="Right arrow"
+                />
+              </a>
 
-            <a href="/courses/" className="buttonSkyBlue">
-              Explore Classes{" "}
-              <Image
-                src="/images/right-arrow-blue.webp"
-                width={30}
-                height={30}
-                alt="Right arrow"
-              />
-            </a>
+              <a href="/courses/" className="buttonSkyBlue">
+                Explore Classes{" "}
+                <Image
+                  src="/images/right-arrow-blue.webp"
+                  width={30}
+                  height={30}
+                  alt="Right arrow"
+                />
+              </a>
+            </div>
           </div>
         </div>
 
