@@ -103,11 +103,11 @@ export default function MyApp({ Component, pageProps }) {
 
     useEffect(() => {
         if (!stylesLoaded) {
-            // Delay loading non-critical CSS until after LCP (2.5s)
+            // Load popup styles after initial render
             const timer = setTimeout(() => {
                 loadStyles();
                 setStylesLoaded(true);
-            }, 2500);
+            }, 100);
 
             return () => clearTimeout(timer);
         }
