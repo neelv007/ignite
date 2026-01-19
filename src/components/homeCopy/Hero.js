@@ -35,24 +35,10 @@ const Hero = () => {
     <div className="container">
       <div className={`row ${styles.heroMain}`}>
 
-        {/* 🔥 MOBILE LCP IMAGE — MUST COME FIRST */}
-        <div className={`col-12 d-lg-none ${styles.heroRight}`}>
-          <Image
-            src="/images/video-cover.webp"
-            alt="Ignite Tutoring Hero"
-            width={360}
-            height={360}
-            priority
-            fetchPriority="high"
-            sizes="100vw"
-            className={styles.heroPoster}
-          />
-        </div>
-
         {/* LEFT CONTENT (TEXT) */}
         <div className={`col-12 col-lg-7 col-xl-7 pe-lg-5 ${styles.heroLeft}`}>
           <div className={styles.heroMainHeading}>
-            <h2 className={styles.SubHeading}>BEST TUTORS IN UAES</h2>
+            <h2 className={styles.SubHeading}>BEST TUTORS IN UAE</h2>
           </div>
 
           <div className="d-lg-none">
@@ -79,6 +65,89 @@ const Hero = () => {
               Ignite&apos;s experienced tutors help students thrive with
               personalized support & structured programs.
             </strong>
+          </div>
+        </div>
+
+        {/* 🔥 MOBILE IMAGE COLLAGE — After text on mobile */}
+        <div className={`col-12 d-lg-none ${styles.heroRight} ${styles.mobileImageSection}`}>
+          <div className={styles.mobileImageCollage}>
+            <div className={styles.mobileLeftImages}>
+              <div className={styles.mobileCircleImage}>
+                <Image
+                  src="/images/hero-mobile-1.webp"
+                  alt="Student with laptop"
+                  width={180}
+                  height={180}
+                  priority
+                  fetchPriority="high"
+                  className={styles.circleImg}
+                />
+              </div>
+              <div className={styles.mobileOvalImage}>
+                <Image
+                  src="/images/hero-mobile-2.webp"
+                  alt="Tutoring session"
+                  width={200}
+                  height={280}
+                  priority
+                  className={styles.ovalImg}
+                />
+              </div>
+            </div>
+            <div className={styles.mobileRightImages}>
+              <div className={styles.mobileRoundedImage}>
+                <Image
+                  src="/images/hero-mobile-3.webp"
+                  alt="Teacher and student"
+                  width={200}
+                  height={100}
+                  priority
+                  className={styles.roundedImg}
+                />
+              </div>
+              <div className={styles.mobileRoundedImage}>
+                <Image
+                  src="/images/hero-mobile-4.webp"
+                  alt="Student learning"
+                  width={200}
+                  height={100}
+                  priority
+                  className={styles.roundedImg}
+                />
+              </div>
+              <div className={styles.mobileRoundedImage}>
+                <Image
+                  src="/images/hero-mobile-5.webp"
+                  alt="Study group"
+                  width={200}
+                  height={100}
+                  priority
+                  className={styles.roundedImg}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.mobileButtonGroup}>
+            <a href="/join-free-demo-class/" className="buttonBlue">
+              Get A Free Demo{" "}
+              <Image
+                src="/images/right-arrow-skyblue.webp"
+                width={30}
+                height={30}
+                alt="Right arrow"
+              />
+            </a>
+
+            <a href="/courses/" className="buttonSkyBlue">
+              Explore Classes{" "}
+              <Image
+                src="/images/right-arrow-blue.webp"
+                width={30}
+                height={30}
+                alt="Right arrow"
+              />
+            </a>
           </div>
         </div>
 
