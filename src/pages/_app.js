@@ -6,7 +6,6 @@ import dynamic from 'next/dynamic';
 
 import "@/styles/critical.css";
 import "@/styles/globals.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 import SEOHead from '../components/SEOHead';
 import Header from "../components/Header";
@@ -50,13 +49,8 @@ const isMobileDevice = () => {
 };
 
 const loadStyles = () => {
-    // import("@/styles/home-copy/Blog.css");
-    // import("@/styles/blog/Blogpg.css");
-    // import("@/styles/slug/slug.css");
-    // import("@/styles/ibdp/Ibdp.css");
-    // import("@/styles/bloginnerpage.css");
-    // import("@/styles/team/team.css");
-    // import("@/styles/contact/contact.css");
+    // Load Bootstrap CSS after LCP
+    import("bootstrap/dist/css/bootstrap.min.css");
     import("@/styles/DelayedPopup.css");
 };
 
