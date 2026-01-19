@@ -10,17 +10,11 @@ export default function Document() {
           as="image"
           href="/images/video-cover.webp"
           type="image/webp"
-          fetchPriority="high"
+          fetchpriority="high"
+          media="(max-width: 991px)"
         />
         
-        {/* Preload critical fonts */}
-        <link
-          rel="preload"
-          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
-          as="style"
-        />
-        
-        {/* Fonts */}
+        {/* Fonts - Use font-display: swap */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -30,6 +24,15 @@ export default function Document() {
         
         {/* DNS prefetch for external resources */}
         <link rel="dns-prefetch" href="https://ignitetraininginstitute.b-cdn.net" />
+        
+        {/* Preload critical font weights only */}
+        <link
+          rel="preload"
+          href="https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Hw5aXp-p7K4KLg.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
       </Head>
 
       <body>
