@@ -11,14 +11,21 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import SEOHead from '../components/SEOHead';
 import Header from "../components/Header";
 
-const Footer = dynamic(() => import("../components/Footer"), { ssr: false });
-const DelayedPopup = dynamic(() => import("../components/DelayedPopup"), { ssr: false });
+// Lazy load non-critical components with higher delay
+const Footer = dynamic(() => import("../components/Footer"), { 
+  ssr: false,
+  loading: () => null 
+});
+const DelayedPopup = dynamic(() => import("../components/DelayedPopup"), { 
+  ssr: false,
+  loading: () => null 
+});
 
 const LocomotiveScrollProvider = dynamic(
     () => import('../components/LocomotiveScrollProvider'),
     {
         ssr: false,
-        loading: () => <div style={{ minHeight: '100vh' }} />
+        loading: () => null
     }
 );
 
