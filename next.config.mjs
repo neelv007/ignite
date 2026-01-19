@@ -78,11 +78,11 @@ const CATEGORY_SLUGS = [
 const nextConfig = {
   reactStrictMode: true,
 
-  // Optimize images (Next.js 16 compatible)
+  // Optimize images (Next.js 16 compatible) - OPTIMIZED FOR LCP
   images: {
     formats: ['image/avif', 'image/webp'],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256],
+    deviceSizes: [390, 640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 360],
     minimumCacheTTL: 31536000,
     dangerouslyAllowSVG: true,
     contentDispositionType: 'inline',
